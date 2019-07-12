@@ -31,7 +31,7 @@ app.post('/webhook', (req, res) => {
         
         if(message.substring(0,4)=="cari"||message.substring(0,4)=="Cari"){
              getProduct(sender_psid,message.substring(5))
-              console.log("on request "+received_message);
+              console.log("on request "+message);
         }else{
           let response;
             response = {
