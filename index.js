@@ -88,40 +88,75 @@ function getProduct(sender_psid,received_message){
        console.log(err);
       }
       
+      const list = {
+        "template_type": "list",
+        "top_element_style": "compact",
+        "elements": [
+            {
+                "title": "Classic T-Shirt Collection",
+                "subtitle": "See all our colors",
+                "image_url": "http://pngimg.com/uploads/tshirt/tshirt_PNG5450.png",
+                "buttons": [
+                    {
+                        "title": "View",
+                        "type": "web_url",
+                        "url": "https://yudiz-bot.herokuapp.com/collection",
+                        "messenger_extensions": true,
+                        "webview_height_ratio": "tall",
+                        "fallback_url": "https://yudiz-bot.herokuapp.com"
+                    }
+                ]
+            },
+            {
+                "title": "Classic White T-Shirt",
+                "subtitle": "See all our colors",
+                "default_action": {
+                    "type": "web_url",
+                    "url": "https://yudiz-bot.herokuapp.com/view?item=100",
+                    "messenger_extensions": false,
+                    "webview_height_ratio": "tall"
+                }
+            },
+            {
+                "title": "Classic Blue T-Shirt",
+                "image_url": "http://pngimg.com/uploads/tshirt/tshirt_PNG5450.png",
+                "subtitle": "100% Cotton, 200% Comfortable",
+                "default_action": {
+                    "type": "web_url",
+                    "url": "https://yudiz-bot.herokuapp.com/view?item=101",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://yudiz-bot.herokuapp.com"
+                },
+                "buttons": [
+                    {
+                        "title": "Shop Now",
+                        "type": "web_url",
+                        "url": "https://yudiz-bot.herokuapp.com/shop?item=101",
+                        "messenger_extensions": true,
+                        "webview_height_ratio": "tall",
+                        "fallback_url": "https://yudiz-bot.herokuapp.com"
+                    }
+                ]
+            }
+        ],
+        "buttons": [
+            {
+                "title": "View More",
+                "type": "postback",
+                "payload": "payload"
+            }
+        ]
+    }
 
        response = {
          "attachment":{
            "type":"template",
            "payload": {
-        "template_type":"generic",
-        "elements":[
-           {
-            "title":"Welcome!",
-            "image_url":"https://petersfancybrownhats.com/company_image.png",
-            "subtitle":"We have the right hat for everyone.",
-            "default_action": {
-              "type": "web_url",
-              "url": "https://petersfancybrownhats.com/view?item=103",
-              "messenger_extensions": false,
-              "webview_height_ratio": "tall",
-              "fallback_url": "https://petersfancybrownhats.com/"
-            },
-            "buttons":[
-              {
-                "type":"web_url",
-                "url":"https://petersfancybrownhats.com",
-                "title":"View Website"
-              },{
-                "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
-              }              
-            ]      
-          }
-        ]
-}
+             list
          }
        }
+      }
     
     console.log("success to request "+received_message);
       callSendAPI(sender_psid, response);   
