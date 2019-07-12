@@ -33,7 +33,15 @@ app.post('/webhook', (req, res) => {
         if(message.substring(0,4)=="cari"||message.substring(0,4)=="Cari"){
           handleMessage(sender_psid,message)
         }else{
-          console.log("Ketik 'Cari <Nama Barang>'");
+          let response;
+          if (received_message.text) {    
+        
+            response = {
+              "text": "Ketik 'Cari <Nama Barang>'"
+            }
+          }  
+          
+          callSendAPI(sender_psid, response);   
         }
       });
   
