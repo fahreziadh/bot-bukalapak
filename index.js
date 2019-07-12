@@ -5,7 +5,7 @@ const
     express=require('express'),
     bodyParser=require('body-parser'),
     request=require('request'),
-    PAGE_ACCESS_TOKEN="EAAFBxTpHwfABAHmosGtXsWwtWRmBididfGIOuYedWDFJlDppLeaHZBXX3pZCUOiV597aL5ifSUu5NrurBurKYBJkz3AwudlyZBaVwhwQ6KmAIVduvWdvkGyyhweZBTM1ZCTtEUUUkVYVR0HCuSkDWcVfUQlLtdk3KaX8mxr61fiiBUotbrA2ZBgT5jWfejLksZD",
+    PAGE_ACCESS_TOKEN="EAAFBxTpHwfABALRV2ZB8Qu8ZCERZAatrxT9xOIY1zIosZCLHhd1Y1sphQgYQzPzNxN4YeSA3AqrDxnHhvdIaYuMq93faiBDs4NDgAgwIOxFM6ens4WZAoRcNSqYjvikDfRy5ZBPNRNYkSgkrIRF8l1bdzzUPbF59R8DSsxYMZBkrSEzVv9XwRvnHPLy5bQjEBoZD",
     app=express().use(bodyParser.json());
     app.listen(1337,()=>console.log("Bot Bukalapak is listening on 1337"));
 
