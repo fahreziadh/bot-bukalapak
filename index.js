@@ -88,7 +88,8 @@ function getProduct(sender_psid,received_message){
        console.log(err);
       }
       var item_list = JSON.parse(fs.readFileSync('layout/item_list.json', 'utf8'));
-
+      console.log(item_list);
+      
        response = {
          "attachment":{
            "type":"template",
