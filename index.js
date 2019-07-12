@@ -87,7 +87,12 @@ function getProduct(sender_psid,received_message){
         }
        console.log(err);
       }
-      var item_list = {
+      
+
+       response = {
+         "attachment":{
+           "type":"template",
+           "payload": {
         "template_type":"generic",
         "elements":[
            {
@@ -115,12 +120,6 @@ function getProduct(sender_psid,received_message){
           }
         ]
 }
-      console.log(item_list);
-      
-       response = {
-         "attachment":{
-           "type":"template",
-           "payload":item_list
          }
        }
     
