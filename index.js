@@ -25,12 +25,11 @@ app.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        let message = webhook_event.message.text;
+        let message = String(webhook_event.message.text);
         let sender_psid = webhook_event.sender.id;
         
         if(message.substring(0,4)=="cari"||message.substring(0,4)=="Cari"){
           handleMessage(sender_psid,message)
-          
         }else{
           let response;
             response = {
