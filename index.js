@@ -125,11 +125,3 @@ function handleMessage(sender_psid, received_message) {
   getProduct(sender_psid,received_message.substring(5))
   console.log("on request "+received_message);
 }
-
-function handlePostback(sender_psid, received_postback) {
-  
-}
-
-function callSendAPI(sender_psid, response) {
-  
-}
