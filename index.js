@@ -87,7 +87,7 @@ function getProduct(sender_psid,received_message){
        console.log(err);
       }
        response = {
-          "text": body
+          "text": String(body).substring(0,20)
         }
     console.log("success to request "+received_message);
       callSendAPI(sender_psid, response);   
