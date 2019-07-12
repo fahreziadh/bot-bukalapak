@@ -1,5 +1,4 @@
 {
-    "payload":{
         "template_type":"generic",
         "elements":[
            {
@@ -26,5 +25,4 @@
             ]      
           }
         ]
-      }
 }

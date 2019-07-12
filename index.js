@@ -93,7 +93,7 @@ function getProduct(sender_psid,received_message){
        response = {
          "attachment":{
            "type":"template",
-           item_list
+           "payload":item_list
          }
        }
     
