@@ -1,17 +1,18 @@
 'use strict'
 
+
 const
     express=require('express'),
     bodyParser=require('body-parser'),
+    request=require('request'),
+    PAGE_ACCESS_TOKEN="EAAFBxTpHwfABAHmosGtXsWwtWRmBididfGIOuYedWDFJlDppLeaHZBXX3pZCUOiV597aL5ifSUu5NrurBurKYBJkz3AwudlyZBaVwhwQ6KmAIVduvWdvkGyyhweZBTM1ZCTtEUUUkVYVR0HCuSkDWcVfUQlLtdk3KaX8mxr61fiiBUotbrA2ZBgT5jWfejLksZD",
     app=express().use(bodyParser.json());
-
     app.listen(1337,()=>console.log("Bot Bukalapak is listening on 1337"));
 
-    app.get('',(req,res)=>{
+app.get('',(req,res)=>{
       res.send("Hi")
-    })
+})
 
-    // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
     let body = req.body;
@@ -24,8 +25,15 @@ app.post('/webhook', (req, res) => {
   
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
-        let webhook_event = entry.messaging[0];
-        console.log(entry.messaging);
+        let webhook_event = entry.messaging[0]  
+        let message = webhook_event.message.toLowerCase()  
+        let sender_psid = webhook_event.sender.id;
+
+        if(message.substring(0,4)=="cari"){
+          handleMessage(sender_psid,message)
+        }else{
+          console.log("Ketik 'Cari <Nama Barang>'");
+        }
       });
   
       // Returns a '200 OK' response to all requests
@@ -37,7 +45,6 @@ app.post('/webhook', (req, res) => {
   
   });
 
-  // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
 
     // Your verify token. Should be a random string.
@@ -64,3 +71,54 @@ app.get('/webhook', (req, res) => {
       }
     }
   });
+
+function getProduct(sender_psid,item){
+    request('https://api.bukalapak.com/v2/products.json?keywords='+item+'&page=2&per_page=20',{json:'true'},(err,res,body)=>{
+      let response;
+      if (received_message.text) {    
+    
+        response = {
+          "text": body
+        }
+      }  
+      
+      callSendAPI(sender_psid, response);   
+    })
+}
+
+  function callSendAPI(sender_psid, response) {
+    // Construct the message body
+    let request_body = {
+      "recipient": {
+        "id": sender_psid
+      },
+      "message": response
+    }
+  
+    // Send the HTTP request to the Messenger Platform
+    request({
+      "uri": "https://graph.facebook.com/v2.6/me/messages",
+      "qs": { "access_token": PAGE_ACCESS_TOKEN },
+      "method": "POST",
+      "json": request_body
+    }, (err, res, body) => {
+      if (!err) {
+        console.log('message sent!')
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+    }); 
+  }
+
+  
+function handleMessage(sender_psid, received_message) {
+  getProduct(sender_psid,received_message.substring(5))
+}
+
+function handlePostback(sender_psid, received_postback) {
+  
+}
+
+function callSendAPI(sender_psid, response) {
+  
+}
