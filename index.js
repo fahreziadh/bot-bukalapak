@@ -16,7 +16,6 @@ app.get('',(req,res)=>{
 app.post('/webhook', (req, res) => {  
  
     let body = req.body;
-    console.log(body);
     
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
@@ -28,10 +27,10 @@ app.post('/webhook', (req, res) => {
         let webhook_event = entry.messaging[0];
         let message = webhook_event.message.text;
         let sender_psid = webhook_event.sender.id;
-        console.log(webhook_event);
         
         if(message.substring(0,4)=="cari"||message.substring(0,4)=="Cari"){
           handleMessage(sender_psid,message)
+          
         }else{
           let response;
             response = {
@@ -79,13 +78,9 @@ app.get('/webhook', (req, res) => {
 
 function getProduct(sender_psid,received_message){
     request('https://api.bukalapak.com/v2/products.json?keywords='+received_message+'&page=2&per_page=20',{json:'true'},(err,res,body)=>{
-      let response;
-      if (received_message.text) {    
-    
-        response = {
+      let response = {
           "text": body
         }
-      }  
       
       callSendAPI(sender_psid, response);   
     })
@@ -117,7 +112,8 @@ function getProduct(sender_psid,received_message){
 
   
 function handleMessage(sender_psid, received_message) {
-  getProduct(sender_psid,received_message.toString().substring(5))
+  getProduct(sender_psid,received_message.substring(5))
+  console.log(received_message);
 }
 
 function handlePostback(sender_psid, received_postback) {
