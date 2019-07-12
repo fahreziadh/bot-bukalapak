@@ -89,7 +89,7 @@ function getProduct(sender_psid,received_message){
        response = {
           "text": body
         }
-    console.log(body);
+    console.log("success to request "+received_message);
       callSendAPI(sender_psid, response);   
     })
 }
@@ -123,7 +123,7 @@ function getProduct(sender_psid,received_message){
   
 function handleMessage(sender_psid, received_message) {
   getProduct(sender_psid,received_message.substring(5))
-  console.log(received_message);
+  console.log("on request "+received_message);
 }
 
 function handlePostback(sender_psid, received_postback) {
