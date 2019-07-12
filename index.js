@@ -76,16 +76,27 @@ app.get('/webhook', (req, res) => {
   });
 
 function getProduct(sender_psid,received_message){
+
     request('https://api.bukalapak.com/v2/products.json?keywords='+received_message+'&page=2&per_page=20',{json:'true'},(err,res,body)=>{
-      let response = {
+    
+    let response;
+      if(err){
+        response = {
+          "text": "Ada kesalahan mohon tunggu sebentar :)"
+        }
+       console.log(err);
+      }
+       response = {
           "text": body
         }
-      
+    console.log(body);
       callSendAPI(sender_psid, response);   
     })
 }
 
   function callSendAPI(sender_psid, response) {
+    console.log({"sender_psid":sender_psid,"response":response});
+    
     // Construct the message body
     let request_body = {
       "recipient": {
