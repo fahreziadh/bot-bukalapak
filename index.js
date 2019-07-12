@@ -26,7 +26,7 @@ app.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        let message = webhook_event.message.toString();
+        let message = webhook_event.message.text.toString();
         let sender_psid = webhook_event.sender.id;
         console.log(webhook_event);
         
@@ -34,13 +34,9 @@ app.post('/webhook', (req, res) => {
           handleMessage(sender_psid,message)
         }else{
           let response;
-          if (received_message.text) {    
-        
             response = {
               "text": "Ketik 'Cari <Nama Barang>'"
             }
-          }  
-          
           callSendAPI(sender_psid, response);   
         }
       });
@@ -81,7 +77,7 @@ app.get('/webhook', (req, res) => {
     }
   });
 
-function getProduct(sender_psid,item){
+function getProduct(sender_psid,received_message){
     request('https://api.bukalapak.com/v2/products.json?keywords='+item+'&page=2&per_page=20',{json:'true'},(err,res,body)=>{
       let response;
       if (received_message.text) {    
@@ -121,7 +117,7 @@ function getProduct(sender_psid,item){
 
   
 function handleMessage(sender_psid, received_message) {
-  getProduct(sender_psid,received_message.substring(5))
+  getProduct(sender_psid,received_message.toString().substring(5))
 }
 
 function handlePostback(sender_psid, received_postback) {
