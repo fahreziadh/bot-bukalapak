@@ -7,6 +7,9 @@ const
 
     app.listen(8080,()=>console.log("Bot Bukalapak is listening on 8080"));
 
+    app.get('',(req,res)=>{
+      res.send("Hi")
+    })
     // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
