@@ -5,6 +5,7 @@ const
     express=require('express'),
     bodyParser=require('body-parser'),
     request=require('request'),
+    fs = require('fs'),
     PAGE_ACCESS_TOKEN="EAAFBxTpHwfABALRV2ZB8Qu8ZCERZAatrxT9xOIY1zIosZCLHhd1Y1sphQgYQzPzNxN4YeSA3AqrDxnHhvdIaYuMq93faiBDs4NDgAgwIOxFM6ens4WZAoRcNSqYjvikDfRy5ZBPNRNYkSgkrIRF8l1bdzzUPbF59R8DSsxYMZBkrSEzVv9XwRvnHPLy5bQjEBoZD",
     app=express().use(bodyParser.json());
     app.listen(1337,()=>console.log("Bot Bukalapak is listening on 1337"));
@@ -14,7 +15,7 @@ app.get('',(req,res)=>{
 })
 
 app.post('/webhook', (req, res) => {  
- 
+
     let body = req.body;
     
     // Checks this is an event from a page subscription
@@ -29,7 +30,8 @@ app.post('/webhook', (req, res) => {
         let sender_psid = webhook_event.sender.id;
         
         if(message.substring(0,4)=="cari"||message.substring(0,4)=="Cari"){
-          handleMessage(sender_psid,message)
+             getProduct(sender_psid,message.substring(5))
+              console.log("on request "+received_message);
         }else{
           let response;
             response = {
@@ -77,8 +79,7 @@ app.get('/webhook', (req, res) => {
 
 function getProduct(sender_psid,received_message){
 
-    request('https://api.bukalapak.com/v2/products.json?keywords='+received_message+'&page=2&per_page=20',{json:'true'},(err,res,body)=>{
-    
+    request('https://api.bukalapak.com/v2/products.json?keywords='+received_message+'&page=1&per_page=20',{json:'true'},(err,res,body)=>{
     let response;
       if(err){
         response = {
@@ -86,15 +87,16 @@ function getProduct(sender_psid,received_message){
         }
        console.log(err);
       }
-       response = {
-          "text": String(body).substring(0,20)
-        }
+      var item_list = JSON.parse(fs.readFileSync('layout/item_list.json', 'utf8'));
+
+       response = item_list
+    
     console.log("success to request "+received_message);
       callSendAPI(sender_psid, response);   
     })
 }
 
-  function callSendAPI(sender_psid, response) {
+function callSendAPI(sender_psid, response) {
     console.log({"sender_psid":sender_psid,"response":response});
     
     // Construct the message body
@@ -104,6 +106,7 @@ function getProduct(sender_psid,received_message){
       },
       "message": response
     }
+    
   
     // Send the HTTP request to the Messenger Platform
     request({
@@ -118,10 +121,4 @@ function getProduct(sender_psid,received_message){
         console.error("Unable to send message:" + err);
       }
     }); 
-  }
-
-  
-function handleMessage(sender_psid, received_message) {
-  getProduct(sender_psid,received_message.substring(5))
-  console.log("on request "+received_message);
 }

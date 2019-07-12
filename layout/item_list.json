@@ -1,0 +1,17 @@
+{"payload": {
+    "template_type":"generic",
+    "elements":[
+       {
+        "title":"<TITLE_TEXT>",
+        "image_url":"<IMAGE_URL_TO_DISPLAY>",
+        "subtitle":"<SUBTITLE_TEXT>",
+        "default_action": {
+          "type": "web_url",
+          "url": "<DEFAULT_URL_TO_OPEN>",
+          "messenger_extensions":true,
+          "webview_height_ratio": "<COMPACT | TALL | FULL>"
+        }     
+      }
+    ]
+  }
+}
