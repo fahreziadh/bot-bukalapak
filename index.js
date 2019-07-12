@@ -5,11 +5,12 @@ const
     bodyParser=require('body-parser'),
     app=express().use(bodyParser.json());
 
-    app.listen(1337,()=>console.log("Bot Bukalapak is listening on 8080"));
+    app.listen(1337,()=>console.log("Bot Bukalapak is listening on 1337"));
 
     app.get('',(req,res)=>{
       res.send("Hi")
     })
+
     // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
@@ -24,7 +25,7 @@ app.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
+        console.log(entry.messaging);
       });
   
       // Returns a '200 OK' response to all requests
