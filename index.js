@@ -78,7 +78,7 @@ app.get('/webhook', (req, res) => {
   });
 
 function getProduct(sender_psid,received_message){
-    request('https://api.bukalapak.com/v2/products.json?keywords='+item+'&page=2&per_page=20',{json:'true'},(err,res,body)=>{
+    request('https://api.bukalapak.com/v2/products.json?keywords='+received_message+'&page=2&per_page=20',{json:'true'},(err,res,body)=>{
       let response;
       if (received_message.text) {    
     
