@@ -5,7 +5,7 @@ const
     bodyParser=require('body-parser'),
     app=express().use(bodyParser.json());
 
-    app.listen(8080,()=>console.log("Bot Bukalapak is listening on 8080"));
+    app.listen(1337,()=>console.log("Bot Bukalapak is listening on 8080"));
 
     app.get('',(req,res)=>{
       res.send("Hi")
