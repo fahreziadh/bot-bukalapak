@@ -89,7 +89,12 @@ function getProduct(sender_psid,received_message){
       }
       var item_list = JSON.parse(fs.readFileSync('layout/item_list.json', 'utf8'));
 
-       response = item_list
+       response = {
+         "attachment":{
+           "type":"template",
+           item_list
+         }
+       }
     
     console.log("success to request "+received_message);
       callSendAPI(sender_psid, response);   
