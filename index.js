@@ -100,9 +100,8 @@ function getProduct(sender_psid,received_message){
           item.image_url=product.images[0]    //Gambar product
           item.subtitle=product.price    //harga product
           item.default_action.url=product.url    //Url product
-          item.default_action.url=product.url    //Url product
           item.buttons[0].url=product.url    //Tombol product
-          img_header=product.url
+          img_header=product.images[0]
           return item
         })
 

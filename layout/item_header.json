@@ -5,8 +5,8 @@
     "buttons": [
         {
           "type":"web_url",
-          "url":"https://bukalapak.com",
-          "title":"Lihat"
+          "url":"#",
+          "title":""
         }    
        ],
     "default_action": {
