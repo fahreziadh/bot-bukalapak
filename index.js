@@ -100,7 +100,7 @@ function getProduct(sender_psid,received_message){
           item.elements[0].subtitle=product.price    //harga product
           item.elements[0].default_action.url=product.url    //Url product
           item.elements[0].default_action.url=product.url    //Url product
-          item.elements[0].buttons.url.url=product.url    //Tombol product
+          item.elements[0].buttons.url=product.url    //Tombol product
           return item
         })
 
