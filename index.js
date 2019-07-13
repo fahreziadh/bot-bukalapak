@@ -93,17 +93,19 @@ function getProduct(sender_psid,received_message){
       let main_list = JSON.parse(fs.readFileSync('layout/main_list.json'));  
       
 
-      var item_list=body.products.map((single)=>{
-        let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
-          item.elements[0].title=single.name   //Nama product
-          item.elements[0].image_url=single.name    //Gambar product
+      var item_list=body.products.map((product)=>{
+          let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
+          item.elements[0].title=product.name   //Nama product
+          item.elements[0].image_url=product.images[0]    //Gambar product
+          item.elements[0].subtitle=product.price    //harga product
+          item.elements[0].default_action.url=product.url    //Url product
+          item.elements[0].default_action.url=product.url    //Url product
+          item.elements[0].buttons.url.url=product.url    //Tombol product
           return item
         })
-      console.log(item_list);
 
-      const list = {
-        
-      } 
+      const list =main_list
+      main_list.elements=item_list
 
        response = {
          attachment:{
