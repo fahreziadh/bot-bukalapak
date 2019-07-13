@@ -94,11 +94,11 @@ function getProduct(sender_psid,received_message){
       
 
       var item_list=body.products.map((single)=>{
-      let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
-        return 
+        let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
           item.elements[0].title=single.name   //Nama product
           item.elements[0].image_url=single.name    //Gambar product
-      })
+          return item
+        })
       console.log(item_list);
 
       const list = {
