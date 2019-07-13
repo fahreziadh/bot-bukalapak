@@ -113,7 +113,7 @@ function getProduct(sender_psid,received_message){
       const list =main_list
       item_list.unshift(item_header)
       list.elements=item_list
-      console.log(item_list);
+      // console.log(item_list);
       
        response = {
          attachment:{
