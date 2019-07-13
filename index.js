@@ -94,7 +94,7 @@ function getProduct(sender_psid,received_message){
       
       var jsonBody=JSON.parse(body)
 
-      var item_list=body.products.map((single)=>{
+      var item_list=jsonBody.products.map((single)=>{
       let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
         return 
           item.elements[0].title=single.name   //Nama product
