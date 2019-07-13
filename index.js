@@ -152,9 +152,9 @@ function getProduct(sender_psid,received_message){
        response = {
          "attachment":{
            "type":"template",
-           "payload": {
+           "payload": 
              list
-         }
+         
        }
       }
     
