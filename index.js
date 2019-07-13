@@ -95,12 +95,12 @@ function getProduct(sender_psid,received_message){
 
       var item_list=body.products.map((product)=>{
           let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
-          item.elements[0].title=product.name   //Nama product
-          item.elements[0].image_url=product.images[0]    //Gambar product
-          item.elements[0].subtitle=product.price    //harga product
-          item.elements[0].default_action.url=product.url    //Url product
-          item.elements[0].default_action.url=product.url    //Url product
-          item.elements[0].buttons.url=product.url    //Tombol product
+          item.title=product.name   //Nama product
+          item.image_url=product.images[0]    //Gambar product
+          item.subtitle=product.price    //harga product
+          item.default_action.url=product.url    //Url product
+          item.default_action.url=product.url    //Url product
+          item.buttons.url=product.url    //Tombol product
           return item
         })
 
