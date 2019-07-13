@@ -148,9 +148,9 @@ function getProduct(sender_psid,received_message){
         ]
     }
        response = {
-         "attachment":{
-           "type":"template",
-           "payload":list
+         attachment:{
+           type:"template",
+           payload:list
          }
       }
     
@@ -164,10 +164,10 @@ function callSendAPI(sender_psid, response) {
     
     // Construct the message body
     let request_body = {
-      "recipient": {
-        "id": sender_psid
+      recipient: {
+        id: sender_psid
       },
-      "message": response
+      message: response
     }
     
   
