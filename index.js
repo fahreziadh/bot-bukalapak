@@ -90,7 +90,7 @@ function getProduct(sender_psid,received_message){
       
 
        response = {
-         "text":body.substring(0,20)
+         "text":body.toString().substring(0,20)
       }
     
     console.log("success to request "+received_message);
