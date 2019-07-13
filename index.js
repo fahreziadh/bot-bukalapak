@@ -111,8 +111,8 @@ function getProduct(sender_psid,received_message){
       item_header.image_url=img_header
 
       const list =main_list
+      item_list.unshift(item_header)
       list.elements=item_list
-      list.elements.unshift(item_header)
 
        response = {
          attachment:{
