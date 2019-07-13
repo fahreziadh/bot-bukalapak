@@ -92,15 +92,14 @@ function getProduct(sender_psid,received_message){
       
       let main_list = JSON.parse(fs.readFileSync('layout/main_list.json'));  
       
-      var jsonBody=JSON.parse(body)
 
-      var item_list=jsonBody.products.map((single)=>{
+      var item_list=body.products.map((single)=>{
       let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
         return 
           item.elements[0].title=single.name   //Nama product
           item.elements[0].image_url=single.name    //Gambar product
       })
-      console.log(item);
+      console.log(item_list);
 
       const list = {
         
