@@ -1,4 +1,24 @@
 {
-    "template_type":"generic",
-    "elements":null 
-}
+    "template_type": "list",
+    "top_element_style": "large",
+    "elements": [
+      {
+        "title": "<TITLE_TEXT>",
+        "subtitle": "<SUBTITLE_TEXT>",
+        "image_url": "<IMAGE_URL_FOR_THUMBNAIL>",          
+        "buttons": [
+            {
+              "type":"web_url",
+              "url":"https://bukalapak.com",
+              "title":"Lihat"
+            }    
+           ],
+        "default_action": {
+          "type": "web_url",
+          "url": "https://bukalapak.com",
+          "messenger_extensions": true,
+          "webview_height_ratio": "tall"
+        }
+      }
+    ]
+  }
