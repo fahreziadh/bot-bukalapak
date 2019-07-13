@@ -105,7 +105,7 @@ function getProduct(sender_psid,received_message){
         })
 
       const list =main_list
-      main_list.elements=item_list
+      list.elements=item_list
 
        response = {
          attachment:{
