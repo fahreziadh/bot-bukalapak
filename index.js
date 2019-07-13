@@ -176,11 +176,7 @@ function callSendAPI(sender_psid, response) {
       "uri": "https://graph.facebook.com/v2.6/me/messages",
       "qs": { "access_token": PAGE_ACCESS_TOKEN },
       "method": "POST",
-      "multipart":[{
-          "content-type": "application/json",
-          "body": JSON.stringify(request_body)
-        }
-      ],
+      "json": request_body
     }, (err, res, body) => {
       if (!err) {
         console.log('message sent!')
