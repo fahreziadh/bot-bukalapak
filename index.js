@@ -91,7 +91,8 @@ function getProduct(sender_psid,received_message){
       // Call template
       
       let main_list = JSON.parse(fs.readFileSync('layout/main_list.json'));  
-      
+      let item_header = JSON.parse(fs.readFileSync('layout/item_header.json'));  
+      let img_header;
 
       var item_list=body.products.map((product)=>{
           let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
@@ -101,11 +102,17 @@ function getProduct(sender_psid,received_message){
           item.default_action.url=product.url    //Url product
           item.default_action.url=product.url    //Url product
           item.buttons[0].url=product.url    //Tombol product
+          img_header=product.url
           return item
         })
 
+      item_header.title="Hasil Pencarian"
+      item_header.subtitle=received_message
+      item_header.image_url=img_header
+
       const list =main_list
       list.elements=item_list
+      list.elements.unshift(item_header)
 
        response = {
          attachment:{
