@@ -98,7 +98,7 @@ function getProduct(sender_psid,received_message){
           let item = JSON.parse(fs.readFileSync('layout/item_list.json'));  
           item.title=product.name   //Nama product
           item.image_url=product.images[0]    //Gambar product
-          item.subtitle=product.price    //harga product
+          item.subtitle=convertToRupiah(product.price)    //harga product
           item.default_action.url=product.url    //Url product
           item.buttons[0].url=product.url    //Tombol product
           img_header=product.images[0]
@@ -124,6 +124,16 @@ function getProduct(sender_psid,received_message){
     console.log("success to request "+received_message);
       callSendAPI(sender_psid, response);   
     })
+}
+
+
+ 
+function convertToRupiah(angka)
+{
+	var rupiah = '';		
+	var angkarev = angka.toString().split('').reverse().join('');
+	for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
+	return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
 }
 
 function callSendAPI(sender_psid, response) {
